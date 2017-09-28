@@ -14,31 +14,31 @@
 ActiveRecord::Schema.define(version: 20170621005323) do
 
   create_table "accounts", force: :cascade do |t|
-    t.string   "address"
-    t.decimal  "balance",    precision: 24, default: 0
+    t.string   "address",    limit: 255
+    t.decimal  "balance",                precision: 24, default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "balance_subscriptions", force: :cascade do |t|
-    t.integer  "account_id"
-    t.integer  "subscriber_id"
+    t.integer  "account_id",    limit: 4
+    t.integer  "subscriber_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "end_at"
-    t.string   "xid"
+    t.string   "xid",           limit: 255
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
+    t.integer  "priority",   limit: 4,     default: 0, null: false
+    t.integer  "attempts",   limit: 4,     default: 0, null: false
+    t.text     "handler",    limit: 65535,             null: false
+    t.text     "last_error", limit: 65535
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,70 +46,70 @@ ActiveRecord::Schema.define(version: 20170621005323) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "event_subscription_notifications", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "event_subscription_id"
+    t.integer  "event_id",              limit: 4
+    t.integer  "event_subscription_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "event_subscriptions", force: :cascade do |t|
-    t.integer  "subscriber_id"
-    t.integer  "filter_config_id"
+    t.integer  "subscriber_id",     limit: 4
+    t.integer  "filter_config_id",  limit: 4
     t.datetime "end_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "filter"
-    t.string   "xid"
-    t.integer  "last_block_height", default: 0
+    t.string   "filter",            limit: 255
+    t.string   "xid",               limit: 255
+    t.integer  "last_block_height", limit: 4,   default: 0
   end
 
   create_table "event_topics", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.integer  "event_id"
+    t.integer  "topic_id",   limit: 4
+    t.integer  "event_id",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer  "account_id"
-    t.string   "block_hash"
-    t.integer  "block_number"
-    t.string   "data"
-    t.integer  "log_index"
-    t.string   "transaction_hash"
-    t.integer  "transaction_index"
+    t.integer  "account_id",        limit: 4
+    t.string   "block_hash",        limit: 255
+    t.integer  "block_number",      limit: 4
+    t.string   "data",              limit: 255
+    t.integer  "log_index",         limit: 4
+    t.string   "transaction_hash",  limit: 255
+    t.integer  "transaction_index", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "filter_configs", force: :cascade do |t|
-    t.integer  "account_id"
-    t.integer  "from_block"
-    t.integer  "to_block"
+    t.integer  "account_id", limit: 4
+    t.integer  "from_block", limit: 4
+    t.integer  "to_block",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "filter_topics", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.integer  "filter_config_id"
+    t.integer  "topic_id",         limit: 4
+    t.integer  "filter_config_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "subscribers", force: :cascade do |t|
-    t.text     "notification_url"
-    t.string   "xid"
-    t.string   "api_key"
-    t.string   "notifier_id"
-    t.string   "notifier_key"
+    t.text     "notification_url", limit: 65535
+    t.string   "xid",              limit: 255
+    t.string   "api_key",          limit: 255
+    t.string   "notifier_id",      limit: 255
+    t.string   "notifier_key",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "api_id"
+    t.string   "api_id",           limit: 255
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string   "topic"
+    t.string   "topic",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

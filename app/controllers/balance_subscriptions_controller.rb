@@ -6,7 +6,6 @@ class BalanceSubscriptionsController < ApiController
       account: account,
       end_at: end_at,
     })
-
     if subscription.save
       success_response xid: subscription.xid
     else
@@ -18,15 +17,15 @@ class BalanceSubscriptionsController < ApiController
   private
 
   def address
-    subscription_params[:address]
+    subscription_params['address']
   end
 
   def end_at
-    Time.at(subscription_params[:end_at].to_i)
+    Time.at(subscription_params['end_at'].to_i)
   end
 
   def subscription_params
-    @subscription_params ||= params[:subscription] ? params[:subscription] : params[:balance_subscription]
+    @subscription_params ||= params[:subscription] ? JSON.parse(params[:subscription]) : JSON.parse(params[:balance_subscription])
   end
 
 end

@@ -12,5 +12,6 @@
 !/log/.keep
 /tmp
 .env
+／.idea/
 
 docker-compose.yml

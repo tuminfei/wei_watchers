@@ -31,8 +31,9 @@ module WeiWatchers
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.active_job.queue_adapter = :delayed_job
 
-    config.logger = Logger.new(STDOUT)
-    config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'INFO')
+    #config.logger = Logger.new(STDOUT)
+    #config.logger.level = 'DEBUG'
   end
 end

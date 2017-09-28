@@ -18,7 +18,6 @@ class BalanceCheck
   def perform
     if current_balance != past_balance
       account.update_attributes! balance: current_balance
-
       account.notify_subscribers({
         address: account.address,
         currentBalance: current_balance.to_s,

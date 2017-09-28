@@ -34,6 +34,7 @@ class SubscriptionCheck
   attr_reader :current_block, :subscription
 
   def new_logs
+    puts ethereum.get_logs(subscription.filter_params)
     @new_logs ||= ethereum.get_logs(subscription.filter_params).result
   end
 

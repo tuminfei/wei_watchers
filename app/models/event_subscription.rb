@@ -25,7 +25,7 @@ class EventSubscription < ActiveRecord::Base
 
   def filter_params
     filter_config.params.merge({
-      fromBlock: formatted_block_height,
+      #fromBlock: formatted_block_height,
     }).compact
   end
 

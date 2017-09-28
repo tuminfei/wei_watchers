@@ -42,7 +42,8 @@ class EventSubscriptionsController < ApiController
   end
 
   def topics
-    (params['topics'] || []).map do |topic|
+    topics = params['topics'].nil? ? [] : params['topics'].split(',')
+    topics.map do |topic|
       Topic.find_or_initialize_by topic: topic
     end
   end

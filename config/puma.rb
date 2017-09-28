@@ -1,4 +1,4 @@
-workers Integer(ENV['PUMA_PROCESSES'] || 2)
+workers Integer(ENV['PUMA_PROCESSES'] || 3)
 threads_count = Integer(ENV['PUMA_THREADS'] || 5)
 threads threads_count, threads_count
 
