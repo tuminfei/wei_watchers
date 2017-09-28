@@ -1,0 +1,10 @@
+wei_watchers:
+  build: .
+  environment:
+    - DATABASE_URL
+    - ETHEREUM_URL
+    - RACK_ENV=production
+    - RAILS_ENV=production
+  net: "host"
+  ports:
+    - "3174:3174"
