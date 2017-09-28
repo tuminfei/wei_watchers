@@ -14,6 +14,7 @@ gem 'rails-api'
 gem 'sass-rails'
 gem 'sysrandom', require: "sysrandom/securerandom"
 gem 'uglifier'
+gem 'daemons'
 
 group :development, :test do
   gem 'byebug'
