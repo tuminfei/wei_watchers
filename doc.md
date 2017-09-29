@@ -13,3 +13,6 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address
 ruby bin/delayed_job start
 
 clockwork config/clock.rb
+
+
+curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x1b4", true],"id":1}' http://localhost:8545
