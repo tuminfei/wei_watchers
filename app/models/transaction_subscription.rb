@@ -18,9 +18,7 @@ class TransactionSubscription < ActiveRecord::Base
   end
 
   def filter_params
-    filter_config.params.merge({
-      fromBlock: formatted_block_height,
-    }).compact
+    [formatted_block_height].compact
   end
 
   private

@@ -71,6 +71,10 @@ class EthereumClient
     epost('eth_getLogs', options)
   end
 
+  def get_transactions(options)
+    epost('eth_getBlockByNumber', options)
+  end
+
   def get_transaction_count(account, tag = 'latest')
     hex_to_int epost('eth_getTransactionCount', [eth_account(account), tag]).result
   end
