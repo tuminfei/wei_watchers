@@ -13,25 +13,25 @@ module HttpClient
 
   def get(path, options = {})
     self.class.get(path.to_s, {
-      basic_auth: http_client_auth_params,
-      query: options,
-      headers: headers
+        basic_auth: http_client_auth_params,
+        query: options,
+        headers: headers
     }.compact)
   end
 
   def post(path, options = {})
     self.class.post(path.to_s, {
-      basic_auth: http_client_auth_params,
-      body: options,
-      headers: headers
+        basic_auth: http_client_auth_params,
+        body: options,
+        headers: headers
     }.compact)
   end
 
   def delete(path, options = {})
     self.class.delete(path.to_s, {
-      basic_auth: http_client_auth_params,
-      body: options,
-      headers: headers
+        basic_auth: http_client_auth_params,
+        body: options,
+        headers: headers
     }.compact)
   end
 

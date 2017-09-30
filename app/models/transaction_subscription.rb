@@ -29,7 +29,7 @@ class TransactionSubscription < ActiveRecord::Base
   end
 
   def check_missed_transactions
-    SubscriptionCheck.delay.perform(id)
+    TransactionSubscriptionCheck.delay.perform(id)
   end
 
   def formatted_block_height

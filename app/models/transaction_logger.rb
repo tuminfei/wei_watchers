@@ -43,12 +43,6 @@ class TransactionLogger
     ethereum.hex_to_int params[:transactionIndex]
   end
 
-  def topics
-    params[:topics].map do |topic|
-      Topic.find_or_create_by topic: topic
-    end
-  end
-
   def transaction_hash
     params[:transactionHash]
   end
@@ -58,14 +52,13 @@ class TransactionLogger
   end
 
   def transaction
-    @transaction ||= (find_event || create_event)
+    @transaction ||= (find_transaction || create_transaction)
   end
 
-  def find_event
-    Event.find_by({
-                      block_number: block_number,
-                      log_index: log_index,
-                  })
+  def find_transaction
+    Transaction.find_by({
+                            transaction_hash: transaction_hash
+                        })
   end
 
   def create_transaction
