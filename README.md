@@ -18,6 +18,11 @@ Then get Watcher Key..
 ```ruby
 WatcherKey: RANDOM_KEY_1 …
 ```
+## Startup
+
+```ruby
+foreman start
+```
 
 ## Watcher API
 
