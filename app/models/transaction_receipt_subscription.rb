@@ -20,14 +20,14 @@ class TransactionReceiptSubscription < ActiveRecord::Base
     end
   end
 
+  def filter_params
+    [transaction_hash].compact
+  end
+
   private
 
   def set_up
     self.xid = SecureRandom.uuid
-  end
-
-  def formatted_block_height
-    "0x#{last_block_height == 0 ? 1.to_s(16) : last_block_height.to_s(16)}"
   end
 
 end
