@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930215822) do
+ActiveRecord::Schema.define(version: 20170930215824) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "address",    limit: 255
@@ -114,7 +114,31 @@ ActiveRecord::Schema.define(version: 20170930215822) do
     t.datetime "updated_at"
   end
 
-  create_table "transaction_subscribers", force: :cascade do |t|
+  create_table "transaction_receipt_subscriptions", force: :cascade do |t|
+    t.integer  "transaction_id",            limit: 4
+    t.integer  "transaction_subscriber_id", limit: 4
+    t.integer  "transaction_hash",          limit: 4
+    t.string   "xid",                       limit: 255
+    t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transaction_receipts", force: :cascade do |t|
+    t.string   "transaction_hash",    limit: 255
+    t.string   "transaction_index",   limit: 255
+    t.string   "block_hash",          limit: 255
+    t.integer  "block_number",        limit: 4
+    t.integer  "cumulative_gas_used", limit: 8
+    t.integer  "gas_used",            limit: 8
+    t.text     "logs",                limit: 65535
+    t.string   "root",                limit: 255,   default: "0"
+    t.integer  "status",              limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transaction_subscriptions", force: :cascade do |t|
     t.integer  "account_id",        limit: 4
     t.integer  "subscriber_id",     limit: 4
     t.string   "trans_type",        limit: 255
@@ -133,7 +157,7 @@ ActiveRecord::Schema.define(version: 20170930215822) do
     t.integer  "gas",               limit: 8
     t.integer  "gas_price",         limit: 8
     t.string   "transaction_hash",  limit: 255
-    t.string   "input",             limit: 500
+    t.text     "input",             limit: 65535
     t.integer  "nonce",             limit: 4
     t.integer  "transaction_index", limit: 4
     t.integer  "value",             limit: 8
