@@ -12,7 +12,9 @@ class TransactionLogger
   end
 
   def perform
-    transaction
+    if subscription.account.address == params[:from] or subscription.account.address == params[:to]
+      transaction
+    end
   end
 
 

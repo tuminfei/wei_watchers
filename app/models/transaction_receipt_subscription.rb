@@ -1,14 +1,16 @@
-class TransactionSubscription < ActiveRecord::Base
+class TransactionReceiptSubscription < ActiveRecord::Base
 
   include HasEthereumClient
 
-  belongs_to :subscriber, inverse_of: :transaction_subscriptions
-  belongs_to :account
 
-  validates :subscriber, presence: true
+  belongs_to :transaction, inverse_of: :transaction_receipt_subscriptions
+  belongs_to :transaction_subscription, inverse_of: :transaction_receipt_subscriptions
+  has_one :subscriber, through: :transaction_subscription
+
+  validates :transaction, presence: true, uniqueness: { scope: [:transaction_subscription] }
+  validates :transaction_subscription, presence: true
 
   before_validation :set_up, on: :create
-  #after_create :check_missed_transactions
 
   scope :current, -> { where "end_at >= ?", Time.now }
 
@@ -18,18 +20,10 @@ class TransactionSubscription < ActiveRecord::Base
     end
   end
 
-  def filter_params
-    [formatted_block_height, true].compact
-  end
-
   private
 
   def set_up
     self.xid = SecureRandom.uuid
-  end
-
-  def check_missed_transactions
-    TransactionSubscriptionCheck.delay.perform(id)
   end
 
   def formatted_block_height
