@@ -21,7 +21,7 @@ class TransactionSubscriptionCheck
   end
 
   def perform
-    new_logs.each do |log|
+    new_transactions.each do |log|
       TransactionLogger.delay.perform(subscription.id, log)
     end
 
@@ -34,7 +34,7 @@ class TransactionSubscriptionCheck
   attr_reader :current_block, :subscription
 
   def new_transactions
-    @new_logs ||= ethereum.get_transactions(current_block).result.transactions
+    @new_transactions ||= ethereum.get_transactions(subscription.filter_params).result.transactions
   end
 
   def update_subscription_block_height

@@ -9,4 +9,5 @@ module Clockwork
 
   every(1.minute, 'SubscriptionCheck.schedule_checks')
   every(1.minute, 'BalanceCheck.schedule_checks')
+  every(1.minute, 'TransactionSubscriptionCheck.schedule_checks')
 end

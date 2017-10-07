@@ -18,7 +18,7 @@ class TransactionSubscription < ActiveRecord::Base
   end
 
   def filter_params
-    [formatted_block_height].compact
+    [formatted_block_height, true].compact
   end
 
   private
@@ -32,7 +32,7 @@ class TransactionSubscription < ActiveRecord::Base
   end
 
   def formatted_block_height
-    "0x#{ethereum.format_int_to_hex last_block_height}"
+    "0x#{last_block_height == 0 ? 1.to_s(16) : last_block_height.to_s(16)}"
   end
 
 end

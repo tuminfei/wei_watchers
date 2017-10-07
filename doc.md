@@ -19,3 +19,6 @@ clockwork config/clock.rb
 
 
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x1b4", true],"id":1}' http://localhost:8545
+
+
+curl -X POST --data '{"id":122240,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x1"]}' http://localhost:8545

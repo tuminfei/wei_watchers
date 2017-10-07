@@ -1,4 +1,5 @@
 class TransactionLogger
+  include HasEthereumClient
 
   def self.perform(subscription_id, params)
     subscription = TransactionSubscription.find(subscription_id)
@@ -11,7 +12,7 @@ class TransactionLogger
   end
 
   def perform
-
+    transaction
   end
 
 
@@ -43,12 +44,40 @@ class TransactionLogger
     ethereum.hex_to_int params[:transactionIndex]
   end
 
+  def from
+    params[:from]
+  end
+
+  def to
+    params[:to]
+  end
+
+  def input
+    params[:input]
+  end
+
+  def gas
+    ethereum.hex_to_int params[:gas]
+  end
+
+  def gas_price
+    ethereum.hex_to_int params[:gas_price]
+  end
+
   def transaction_hash
-    params[:transactionHash]
+    params[:hash]
   end
 
   def transaction_index
     ethereum.hex_to_int params[:transactionIndex]
+  end
+
+  def nonce
+    ethereum.hex_to_int params[:nonce]
+  end
+
+  def value
+    ethereum.hex_to_int params[:value]
   end
 
   def transaction
@@ -74,9 +103,9 @@ class TransactionLogger
                            nonce: nonce,
                            transaction_index: transaction_index,
                            value: value,
-                           v: v,
-                           r: r,
-                           s: s
+                           v: params[:v],
+                           r: params[:r],
+                           s: params[:s]
 
                        })
   end
