@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20170930215824) do
   create_table "transaction_receipt_subscriptions", force: :cascade do |t|
     t.integer  "transaction_id",              limit: 4
     t.integer  "transaction_subscription_id", limit: 4
-    t.integer  "transaction_hash",            limit: 4
+    t.string   "transaction_hash",            limit: 255
     t.string   "xid",                         limit: 255
     t.datetime "end_at"
     t.datetime "created_at"

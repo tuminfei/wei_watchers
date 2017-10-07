@@ -9,7 +9,6 @@ class TransactionReceiptSubscription < ActiveRecord::Base
 
   validates :transaction_id, presence: true
   validates :transaction_hash, presence: true
-  validates :transaction_subscription, presence: true
 
   before_validation :set_up, on: :create
 
