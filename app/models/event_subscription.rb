@@ -25,7 +25,7 @@ class EventSubscription < ActiveRecord::Base
 
   def filter_params
     filter_config.params.merge({
-      #fromBlock: formatted_block_height,
+      fromBlock: formatted_block_height,
     }).compact
   end
 
@@ -42,7 +42,7 @@ class EventSubscription < ActiveRecord::Base
   end
 
   def formatted_block_height
-    "0x#{ethereum.format_int_to_hex last_block_height}"
+    "0x#{last_block_height.to_s(16)}"
   end
 
 end

@@ -1,4 +1,5 @@
 class EventLogger
+  include HasEthereumClient
 
   def self.perform(subscription_id, params)
     subscription = EventSubscription.find(subscription_id)

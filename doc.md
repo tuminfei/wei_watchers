@@ -10,6 +10,9 @@ curl -u aDuiBj1RJk3Z7utL2dOZIgJfiVHC2QyBAzOxIJ3TF-2SZauSkk5_kn3_Pq2-EmBzjBT9nsYL
 curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0x9B11EFcAAA1890f6eE52C6bB7CF8153aC5d74139","fromBlock":"0x416956","topics":["0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"]}],"id":74}' http://localhost:8545
 
 
+curl -X POST --data '{"id":599011,"jsonrpc":"2.0","method":"eth_getLogs","params":[{"address":"0x29b5f6efad2ad701952dfde9f29c960b5d6199c5","fromBlock":"0x0000000000000000000000000000000000000000000000000000000000000000","topics":["0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"]}]}' http://47.52.31.232:8545
+
+
 ruby bin/delayed_job start
 
 clockwork config/clock.rb
