@@ -1,0 +1,16 @@
+development: &defaults
+  adapter: mysql2
+  encoding: utf8
+  database: wei_watchers_development
+  username: root
+  password:
+  pool: 10
+  reconnect: true
+
+test:
+  <<: *defaults
+  database: wei_watchers_test
+
+production:
+  <<: *defaults
+  database: wei_watchers_production

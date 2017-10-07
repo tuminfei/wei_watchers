@@ -13,5 +13,6 @@
 /tmp
 .env
 /.idea/
+/config/database.yml
 
 docker-compose.yml
