@@ -61,7 +61,7 @@ class TransactionLogger
   end
 
   def gas_price
-    ethereum.hex_to_int params[:gas_price]
+    ethereum.hex_to_int params[:gasPrice]
   end
 
   def transaction_hash
