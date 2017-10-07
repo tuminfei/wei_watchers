@@ -13,7 +13,13 @@ class TransactionLogger
 
   def perform
     if subscription.account.address == params[:from] or subscription.account.address == params[:to]
-      transaction
+      trans = transaction
+      TransactionReceiptSubscription.create({
+                                                transaction_id: trans.id,
+                                                transaction_subscription_id: subscription.id,
+                                                transaction_hash: trans.transaction_hash,
+                                                end_at: subscription.end_at
+                                            })
     end
   end
 
@@ -90,6 +96,12 @@ class TransactionLogger
     Transaction.find_by({
                             transaction_hash: transaction_hash
                         })
+  end
+
+  def find_transaction_receipt_subscription
+    TransactionSubscription.find_by({
+                                        transaction_hash: transaction_hash
+                                    })
   end
 
   def create_transaction

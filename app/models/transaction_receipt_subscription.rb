@@ -3,11 +3,12 @@ class TransactionReceiptSubscription < ActiveRecord::Base
   include HasEthereumClient
 
 
-  belongs_to :transaction, inverse_of: :transaction_receipt_subscriptions
+  belongs_to :owner, foreign_key: "transaction_id", class_name: "Transaction"
   belongs_to :transaction_subscription, inverse_of: :transaction_receipt_subscriptions
   has_one :subscriber, through: :transaction_subscription
 
-  validates :transaction, presence: true, uniqueness: { scope: [:transaction_subscription] }
+  validates :transaction_id, presence: true
+  validates :transaction_hash, presence: true
   validates :transaction_subscription, presence: true
 
   before_validation :set_up, on: :create

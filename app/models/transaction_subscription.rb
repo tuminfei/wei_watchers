@@ -4,6 +4,7 @@ class TransactionSubscription < ActiveRecord::Base
 
   belongs_to :subscriber, inverse_of: :transaction_subscriptions
   belongs_to :account
+  has_one :transaction_receipt_subscription
 
   validates :subscriber, presence: true
 
