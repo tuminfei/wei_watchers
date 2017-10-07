@@ -25,7 +25,6 @@ class TransactionSubscription < ActiveRecord::Base
 
   def set_up
     self.xid = SecureRandom.uuid
-    return unless filter_config.present?
   end
 
   def check_missed_transactions

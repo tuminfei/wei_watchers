@@ -1,6 +1,6 @@
-class CreateTransactionSubscribers < ActiveRecord::Migration
+class CreateTransactionSubscriptions < ActiveRecord::Migration
   def change
-    create_table :transaction_subscribers do |t|
+    create_table :transaction_subscriptions do |t|
       t.integer :account_id
       t.integer :subscriber_id
       t.string :trans_type

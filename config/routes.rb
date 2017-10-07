@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     resources :balance_subscriptions, only: [:create]
     resources :event_subscriptions, only: [:create]
+    resources :transaction_subscriptions, only: [:create]
     resources :subscriptions, only: [:create], controller: 'balance_subscriptions'
   end
 end
