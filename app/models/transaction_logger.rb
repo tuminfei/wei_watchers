@@ -12,7 +12,7 @@ class TransactionLogger
   end
 
   def perform
-    if subscription.account.address == params[:from] or subscription.account.address == params[:to]
+    if subscription.account.address.downcase == params[:from] or subscription.account.address.downcase == params[:to]
       trans = transaction
       TransactionReceiptSubscription.create({
                                                 transaction_id: trans.id,
