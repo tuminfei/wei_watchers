@@ -37,7 +37,7 @@ class TransactionReceiptLogger
   end
 
   def logs
-    params[:logs].to_s
+    params[:logs]
   end
 
   def root
