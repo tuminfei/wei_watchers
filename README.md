@@ -50,6 +50,13 @@ curl -u WatcherKey:WatcherSecret -X POST -d "address=0x286b51468b03fb336aee6e46B
  
 ## API Params
 
+#### Balance
+
+```
+address:string,an Ethereum contract address
+endAt:integer,a Unix timestamp specifying when the subscription expires
+```
+
 #### Event
 
 ```
