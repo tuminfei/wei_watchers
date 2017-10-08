@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20170930215824) do
     t.string   "transaction_hash",            limit: 255
     t.string   "xid",                         limit: 255
     t.datetime "end_at"
+    t.integer  "last_block_height",           limit: 4,   default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,11 +130,14 @@ ActiveRecord::Schema.define(version: 20170930215824) do
     t.string   "transaction_index",   limit: 255
     t.string   "block_hash",          limit: 255
     t.integer  "block_number",        limit: 4
+    t.string   "from",                limit: 255
+    t.string   "to",                  limit: 255
     t.integer  "cumulative_gas_used", limit: 8
     t.integer  "gas_used",            limit: 8
     t.text     "logs",                limit: 65535
     t.string   "root",                limit: 255,   default: "0"
     t.integer  "status",              limit: 4
+    t.string   "contract_address",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

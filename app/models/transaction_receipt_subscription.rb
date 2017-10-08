@@ -10,9 +10,13 @@ class TransactionReceiptSubscription < ActiveRecord::Base
   validates :transaction_id, presence: true
   validates :transaction_hash, presence: true
 
+  validates :transaction_id, uniqueness: true
+  validates :transaction_hash, uniqueness: true
+
   before_validation :set_up, on: :create
 
   scope :current, -> { where "end_at >= ?", Time.now }
+  scope :is_done, -> { where "last_block_height = 0"}
 
   def self.reset_current_filters
     current.pluck(:id).each do |id|
