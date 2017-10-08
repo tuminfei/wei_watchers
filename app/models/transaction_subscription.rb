@@ -20,7 +20,23 @@ class TransactionSubscription < ActiveRecord::Base
   end
 
   def filter_params
-    [formatted_block_height, true].compact
+    [sync_block_height, true].compact
+  end
+
+  def sync_block_count
+    sync_block_int = 0
+    if from_block.present?
+      if to_block.nil?
+        to_block_heigh = last_block_height
+      else
+        to_block_heigh = to_block
+      end
+      sync_block_int = sync_block.nil? ? from_block : (sync_block + 1)
+      sync_block_int = sync_block_int > to_block_heigh ? to_block_heigh : sync_block_int
+    else
+      sync_block_int = last_block_height == 0 ? 1 : last_block_height
+    end
+    sync_block_int
   end
 
   private
@@ -35,6 +51,11 @@ class TransactionSubscription < ActiveRecord::Base
 
   def formatted_block_height
     "0x#{last_block_height == 0 ? 1.to_s(16) : last_block_height.to_s(16)}"
+  end
+
+  #同步块
+  def sync_block_height
+    "0x#{sync_block_count.to_s(16)}"
   end
 
 end

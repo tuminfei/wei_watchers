@@ -5,19 +5,21 @@ class TransactionSubscriptionCheck
   def self.schedule_checks(current_block = nil)
     current_block ||= EthereumClient.new.current_block_height
 
-    TransactionSubscription.current.pluck(:id).uniq.each do |subscription_id|
-      delay.perform subscription_id, current_block
+    TransactionSubscription.current.each do |subscription|
+      current_sync_block = subscription.sync_block_count
+      delay.perform subscription.id, current_block, current_sync_block
     end
   end
 
-  def self.perform(id, current_block = nil)
+  def self.perform(id, current_block = nil, current_sync_block = nil)
     subscription = TransactionSubscription.find(id)
-    new(subscription, current_block).perform
+    new(subscription, current_block, current_sync_block).perform
   end
 
-  def initialize(subscription, current_block = nil)
+  def initialize(subscription, current_block = nil, current_sync_block = nil)
     @subscription = subscription
     @current_block = current_block
+    @current_sync_block = current_sync_block
   end
 
   def perform
@@ -31,7 +33,7 @@ class TransactionSubscriptionCheck
 
   private
 
-  attr_reader :current_block, :subscription
+  attr_reader :current_block, :subscription, :current_sync_block
 
   def new_transactions
     @new_transactions ||= ethereum.get_transactions(subscription.filter_params).result.transactions
@@ -39,7 +41,7 @@ class TransactionSubscriptionCheck
 
   def update_subscription_block_height
     if current_block.present?
-      subscription.update_attributes! last_block_height: current_block
+      subscription.update_attributes! last_block_height: current_block, sync_block: current_sync_block
     end
   end
 
