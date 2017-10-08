@@ -33,7 +33,7 @@ foreman start
 #Balance
 curl -u WatcherKey:WatcherSecret  -X POST -d subscription='{"address": "0x00E89e4Ace8c83E6e345d6faA771E1E8c505F350", "endAt": "1813520678"}' http://localhost:3000/api/balance_subscriptions
 
-#EvenLog
+#EventLog
 curl -u WatcherKey:WatcherSecret -X POST -d "address=0x00E89e4Ace8c83E6e345d6faA771E1E8c505F350&endAt=1813520678" http://localhost:3000/api/event_subscriptions
 
 #Transaction
@@ -48,7 +48,26 @@ curl -u WatcherKey:WatcherSecret -X POST -d "address=0x286b51468b03fb336aee6e46B
 #curl -u 2dCKNk-IncccVxtI4G8PcnoLoviH_pvIx_aWOhJHSzpXTDbTZnVFy4OJDsUS9NOrJXrbyUgIukkv9-m9wwNRzw==:K2uTgGdHmhYspwJl-FFLh1b_YLKolk7rX8GYmWK0Ba3LXVwSb4SxwYW6WYQBGQzUvf8pys6RSpTsIL97DvZ-7g== -X POST -d "address=0x286b51468b03fb336aee6e46B6EC4750E8b6f297&endAt=1813520678" http://localhost:3000/api/transaction_subscriptions
 ```
  
- 
+## API Params
+
+#### Event
+
+```
+address:string,an Ethereum contract address
+endAt:integer,a Unix timestamp specifying when the subscription expires
+fromBlock:integer,block number of the earliest block to query from(defaults to the genesis block)
+toBlock:integer,block number of the latest block to query up to(defaults to the latest block)
+topics:array,array of topic IDs, to filter down to specific types of events at an address you would like updates on
+```
+
+#### Transaction
+
+```
+address:string,an Ethereum contract address
+endAt:integer,a Unix timestamp specifying when the subscription expires
+fromBlock:integer,block number of the earliest block to query from(defaults to the genesis block)
+toBlock:integer,block number of the latest block to query up to(defaults to the latest block)
+```
  
 ### A service for push notifications of Ethereum logs and account balances.
 

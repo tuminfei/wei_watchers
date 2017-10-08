@@ -21,6 +21,8 @@ class TransactionSubscriptionsController < ApiController
     subscriber.transaction_subscriptions.build({
       account_id: find_account.id,
       end_at: Time.at(params[:endAt].to_i),
+      from_block: params[:fromBlock],
+      to_block: params[:toBlock],
       trans_type: params[:trans_type]
     })
   end

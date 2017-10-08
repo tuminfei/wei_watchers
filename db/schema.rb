@@ -146,6 +146,9 @@ ActiveRecord::Schema.define(version: 20170930215824) do
     t.integer  "account_id",        limit: 4
     t.integer  "subscriber_id",     limit: 4
     t.string   "trans_type",        limit: 255
+    t.integer  "from_block",        limit: 4
+    t.integer  "to_block",          limit: 4
+    t.integer  "sync_block",        limit: 4
     t.integer  "last_block_height", limit: 4,   default: 0
     t.string   "xid",               limit: 255
     t.datetime "end_at"
