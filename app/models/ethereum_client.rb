@@ -132,12 +132,9 @@ class EthereumClient
   private
 
   def epost(method_name, params = nil)
-    Rails.logger.info ENV['ETHEREUM_URL'].to_s, {
-        id: HttpClient.random_id,
-        jsonrpc: "2.0",
-        method: method_name,
-        params: Array.wrap(params).compact,
-    }.to_json
+    Rails.logger.info '---------------RPC---------------'
+    Rails.logger.info(ENV['ETHEREUM_URL'].to_s)
+    Rails.logger.info({id: HttpClient.random_id, jsonrpc: "2.0", method: method_name, params: Array.wrap(params).compact}.to_json)
     hashie_post(ENV['ETHEREUM_URL'].to_s, {
       id: HttpClient.random_id,
       jsonrpc: "2.0",
