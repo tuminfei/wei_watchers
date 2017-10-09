@@ -22,6 +22,10 @@ class TransactionReceiptSubscriptionCheck
 
   def perform
     new_transaction_receipt_params = new_transaction_receipt
+    #暂时屏蔽logs字段
+    new_transaction_receipt_params['logs'] = ''
+    #Rails.logger.info new_transaction_receipt_params['logs']
+    #Rails.logger.info new_transaction_receipt_params
     TransactionReceiptLogger.delay.perform(subscription.id, new_transaction_receipt_params)
     update_subscription_block_height
   end
