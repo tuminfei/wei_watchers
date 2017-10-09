@@ -132,9 +132,7 @@ class EthereumClient
   private
 
   def epost(method_name, params = nil)
-    puts '0000000000000'
-    puts params
-    puts ENV['ETHEREUM_URL'].to_s, {
+    Rails.logger.info ENV['ETHEREUM_URL'].to_s, {
         id: HttpClient.random_id,
         jsonrpc: "2.0",
         method: method_name,
