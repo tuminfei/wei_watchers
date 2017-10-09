@@ -8,7 +8,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.bigint :gas
       t.bigint :gas_price
       t.string :transaction_hash
-      t.text :input
+      t.text :input, limit: 16.megabytes - 1
       t.integer :nonce
       t.integer :transaction_index
       t.bigint :value
