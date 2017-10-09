@@ -32,7 +32,9 @@ class TransactionSubscription < ActiveRecord::Base
         to_block_heigh = to_block
       end
       sync_block_int = sync_block.nil? ? from_block : (sync_block + 1)
-      sync_block_int = sync_block_int > to_block_heigh ? to_block_heigh : sync_block_int
+      if to_block_heigh != 0
+        sync_block_int = sync_block_int > to_block_heigh ? to_block_heigh : sync_block_int
+      end
     else
       sync_block_int = last_block_height == 0 ? 1 : last_block_height
     end
