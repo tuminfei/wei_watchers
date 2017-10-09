@@ -11,7 +11,7 @@ class CreateTransactions < ActiveRecord::Migration
       t.text :input, limit: 16.megabytes - 1
       t.integer :nonce
       t.integer :transaction_index
-      t.bigint :value
+      t.decimal :value, precision: 65, scale: 0
       t.string :v
       t.string :r
       t.string :s
