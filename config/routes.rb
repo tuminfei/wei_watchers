@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
   root 'application#home'
 
+  namespace :api do
+    resource :query do
+      member do
+        get :eth_account_transactions
+        get :eth_account_transactions_gas_value
+        get :eth_account_transactions_gas
+        get :eth_account_fee
+      end
+    end
+  end
+
   scope path: :api do
     get 'status' => 'api#status'
 
