@@ -31,7 +31,7 @@ foreman start
 
 ```shell
 #API Status
-curl -u WatcherKey:WatcherSecret -X POST http://localhost:3000/api/status
+curl -u WatcherKey:WatcherSecret http://localhost:3000/api/status
 
 #Balance
 curl -u WatcherKey:WatcherSecret  -X POST -d subscription='{"address": "0x00E89e4Ace8c83E6e345d6faA771E1E8c505F350", "endAt": "1813520678"}' http://localhost:3000/api/balance_subscriptions
