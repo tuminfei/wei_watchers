@@ -1,4 +1,5 @@
 class ApiController < ActionController::Base
+  include HasEthereumClient
 
   skip_before_action :verify_authenticity_token
 
