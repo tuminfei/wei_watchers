@@ -82,6 +82,8 @@ toBlock:integer,block number of the latest block to query up to(defaults to the 
 ## Query API
  
 ```shell
+curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8" http://47.52.54.185:5000/api/query/eth_account_balance
+ 
 curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8" http://47.52.54.185:5000/api/query/eth_account_transactions
  
 curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8" http://47.52.54.185:5000/api/query/eth_account_transactions_gas_value

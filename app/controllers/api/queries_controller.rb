@@ -1,5 +1,21 @@
 module Api
   class QueriesController < ApiController
+    def eth_account_balance
+      account = Account.where(:address => params[:address])
+      if account.present?
+        render json: {
+            address: params[:address],
+            balance: account.balance,
+            time: account.updated_at.to_i.to_s,
+        }
+      else
+        render json: {
+            errors: ['Temporarily unavailable.'],
+            time: Time.now.to_i
+        }, status: :service_unavailable
+      end
+    end
+
     def eth_account_transactions
       account = params[:address]
       transactions = Transaction.where(:from => account)
