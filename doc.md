@@ -22,3 +22,6 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":[
 
 
 curl -X POST --data '{"id":122240,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0x1"]}' http://localhost:8545
+
+
+curl -X POST --data '{"id":122240,"jsonrpc":"2.0","method":"eth_getBlockByNumber","params":["0xf49e770000cdfb382ac893dc353dcbccb68227dc76e301b760a649792964f193"]}' http://47.52.31.232:8545

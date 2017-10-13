@@ -3,7 +3,7 @@ development: &defaults
   encoding: utf8
   database: wei_watchers_development
   username: root
-  password: root
+  password:
   pool: 10
   reconnect: true
 
