@@ -83,5 +83,23 @@ module Api
         }, status: :service_unavailable
       end
     end
+
+    def eth_tx_fee
+      txid = params[:txid]
+      transaction = Transaction.where(:transaction_hash => txid).includes(:transaction_receipt).first
+
+      if txid.present? and transaction.present? and transaction.transaction_receipt.present?
+        render json: {
+            gas_price: transaction.gas_price,
+            gas_used: transaction.transaction_receipt.gas_used,
+            time: Time.now.to_i.to_s,
+        }
+      else
+        render json: {
+            errors: ['Temporarily unavailable.'],
+            time: Time.now.to_i
+        }, status: :service_unavailable
+      end
+    end
   end
 end

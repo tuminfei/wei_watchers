@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   namespace :api do
     resource :query do
       member do
+        get :eth_account_balance
         get :eth_account_transactions
         get :eth_account_transactions_gas_value
         get :eth_account_transactions_gas
         get :eth_account_fee
+        get :eth_tx_fee
       end
     end
   end

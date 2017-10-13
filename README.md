@@ -91,6 +91,19 @@ curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887
 curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8" http://47.52.54.185:5000/api/query/eth_account_transactions_gas
  
 curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8" http://47.52.54.185:5000/api/query/eth_account_fee
+ 
+curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8" http://47.52.54.185:5000/api/query/eth_tx_fee
+```
+
+## API Params
+ 
+```
+eth_account_balance:address
+eth_account_transactions:address
+eth_account_transactions_gas_value:address
+eth_account_transactions_gas:address
+eth_account_fee:address
+eth_tx_fee:txid
 ```
  
 ### A service for push notifications of Ethereum logs and account balances.
