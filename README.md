@@ -95,7 +95,7 @@ curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887
 curl -u WatcherKey:WatcherSecret -X GET -d "address=0x5c13a82ff280cdd8e6fa12c887652e5de1cd65a8" http://47.52.54.185:5000/api/query/eth_tx_fee
 ```
 
-## API Params
+## Query API Params
  
 ```
 eth_account_balance:address
